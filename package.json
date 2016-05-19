@@ -1,0 +1,27 @@
+{
+  "name": "fis3-parser-po",
+  "version": "1.1.0",
+  "description": "a plugin for fis3 parse po file to json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccqgithub/fis3-parser-po.git"
+  },
+  "keywords": [
+    "fis3",
+    "po",
+    "json"
+  ],
+  "author": "Season Chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ccqgithub/fis3-parser-po/issues"
+  },
+  "homepage": "https://github.com/ccqgithub/fis3-parser-po#readme",
+  "dependencies": {
+    "pofile": "^1.0.2"
+  }
+}
