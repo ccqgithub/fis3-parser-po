@@ -5,6 +5,7 @@ var PO = require('pofile');
 module.exports = function(content, file, conf) {
   var defConf,
     settings,
+    result,
     po;
 
   po = PO.parse(content);
@@ -17,6 +18,7 @@ module.exports = function(content, file, conf) {
     },
     item: {
       comments: true,
+      msgid: true,
       msgstr: true,
       msgctxt: true,
       msgid_plural: false,
@@ -27,6 +29,9 @@ module.exports = function(content, file, conf) {
     },
     format: {
       space: '  '
+    },
+    ext: {
+      module: true
     }
   };
 
@@ -35,10 +40,11 @@ module.exports = function(content, file, conf) {
     conf = {};
 
   // settings
-  settings = Object.assign({
+  settings = Object.assign({}, {
     global: Object.assign({}, defConf.global, conf.global),
     item: Object.assign({}, defConf.item, conf.item),
-    format: Object.assign({}, defConf.format, conf.format)
+    format: Object.assign({}, defConf.format, conf.format),
+    ext: Object.assign({}, defConf.ext, conf.ext)
   });
 
   // deal global attr
@@ -54,6 +60,11 @@ module.exports = function(content, file, conf) {
     return item;
   });
 
-  // po2json
-  return JSON.stringify(po, null, settings.format.space);
+  // to json
+  result = JSON.stringify(po, null, settings.format.space);
+
+  // is module
+  if (settings.ext.module) result = 'module.exports = ' + result;
+
+  return result;
 };

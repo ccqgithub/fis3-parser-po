@@ -9,7 +9,7 @@ fis.set('project.fileType.text', 'po');
 
 // 处理语言文件*.po
 fis.match('src/**.po', {
-  rExt: 'json',
+  rExt: 'json', // 如果module为true，则应该是js
   parser: fis.plugin('po', {}, {
     // confs
   })
@@ -36,6 +36,10 @@ defConf = {
   // 格式
   format: {
     space: '  '
+  },
+  ext: {
+    // 是否打包成模块
+    module: true
   }
 };
 ```
